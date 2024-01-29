@@ -1,8 +1,9 @@
-// server/api/disney.js
-export const disneyCharacters = [
-    { id: 1, name: 'Mickey Mouse' },
-    { id: 2, name: 'Donald Duck' },
-    { id: 3, name: 'Goofy' },
-    // Add more characters as needed
-  ];
-  
+export default defineEventHandler((event) => {
+  async function getDisneyData() {
+    const res = await fetch("https://api.disneyapi.dev/character");
+    const disneyData = await res.json();
+    return disneyData;
+  }
+  const data = getDisneyData();
+  return data;
+});
